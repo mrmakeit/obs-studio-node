@@ -21,7 +21,7 @@ describe('nodeobs_settings', () => {
     after(function() {
         obs.shutdown();
         obs = null;
-        deleteConfigFiles();
+        //deleteConfigFiles();
     });
 
     context('# OBS_settings_saveSettings and OBS_settings_getSettings', () => {
@@ -50,8 +50,12 @@ describe('nodeobs_settings', () => {
             osn.NodeObs.OBS_settings_saveSettings('General', generalSettings);
 
             // Checking if general settings were updated correctly
-            const updatedGeneralSettings = osn.NodeObs.OBS_settings_getSettings('General');
+            let updatedGeneralSettings = osn.NodeObs.OBS_settings_getSettings('General');
             expect(generalSettings).to.eql(updatedGeneralSettings);
+
+            // Clearing arrays
+            generalSettings.length = 0;
+            updatedGeneralSettings.length = 0;
         });
 
         it('Get and set Twitch stream settings', () => {
@@ -67,6 +71,9 @@ describe('nodeobs_settings', () => {
             });
 
             osn.NodeObs.OBS_settings_saveSettings('Stream', originalStreamSettings);
+
+            // Clearing array
+            originalStreamSettings.length = 0;
 
             // Getting Twitch stream settings container
             let newStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
@@ -95,8 +102,12 @@ describe('nodeobs_settings', () => {
             osn.NodeObs.OBS_settings_saveSettings('Stream', newStreamSettings);
 
             // Checking if stream settings were updated correctly
-            const updatedStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
+            let updatedStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
             expect(newStreamSettings).to.eql(updatedStreamSettings);
+
+            // Clearing arrays
+            newStreamSettings.length = 0;
+            updatedStreamSettings.length = 0;
         });
 
         it('Get and set Youtube stream settings', () => {
@@ -112,6 +123,9 @@ describe('nodeobs_settings', () => {
             });
 
             osn.NodeObs.OBS_settings_saveSettings('Stream', originalStreamSettings);
+            
+            // Clearing array
+            originalStreamSettings.length = 0;
 
             // Getting Youtube stream settings container
             let newStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
@@ -142,6 +156,10 @@ describe('nodeobs_settings', () => {
             // Checking if stream settings were updated correctly
             const updatedStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
             expect(newStreamSettings).to.eql(updatedStreamSettings);
+
+            // Clearing arrays
+            newStreamSettings.length = 0;
+            updatedStreamSettings.length = 0;
         });
         
         it('Get and Set Mixer stream settings', () => {
@@ -157,6 +175,9 @@ describe('nodeobs_settings', () => {
             });
 
             osn.NodeObs.OBS_settings_saveSettings('Stream', originalStreamSettings);
+
+            // Clearing array
+            originalStreamSettings.length = 0;
 
             // Getting Mixer stream settings container
             let newStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
@@ -187,6 +208,10 @@ describe('nodeobs_settings', () => {
             // Checking if stream settings were updated correctly
             const updatedStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
             expect(newStreamSettings).to.eql(updatedStreamSettings);
+
+            // Clearing arrays
+            newStreamSettings.length = 0;
+            updatedStreamSettings.length = 0;
         });
 
         it('Get and set Facebook stream settings', () => {
@@ -202,6 +227,9 @@ describe('nodeobs_settings', () => {
             });
 
             osn.NodeObs.OBS_settings_saveSettings('Stream', originalStreamSettings);
+
+            // Clearing array
+            originalStreamSettings.length = 0;
 
             // Getting Facebook stream settings container
             let newStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
@@ -228,6 +256,10 @@ describe('nodeobs_settings', () => {
             // Checking if stream settings were updated correctly
             const updatedStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
             expect(newStreamSettings).to.eql(updatedStreamSettings);
+
+            // Clearing arrays
+            newStreamSettings.length = 0;
+            updatedStreamSettings.length = 0;
         });
 
         it('Get and set simple output settings', () => {
@@ -241,6 +273,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Simple';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setToSimple);
+
+            // Clearing array
+            setToSimple.length = 0;
 
             // Setting recording quality to same as stream and activating replay buffer
             let setRecQualityAndReplayBuffer = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -258,6 +293,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = true;
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setRecQualityAndReplayBuffer);
+
+            // Clearing array
+            setRecQualityAndReplayBuffer.length = 0;
 
             // Getting simple output settings container with same as stream and replay buffer settings
             let sameAsStreamRBuffOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -318,6 +356,10 @@ describe('nodeobs_settings', () => {
             const updatedSameAsStreamRBuffOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(sameAsStreamRBuffOutputSettings).to.eql(updatedSameAsStreamRBuffOutputSettings);
 
+            // Clearing arrays
+            sameAsStreamRBuffOutputSettings.length = 0;
+            updatedSameAsStreamRBuffOutputSettings.length = 0;
+
             // Setting recording quality to high
             let setHighQuality = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -328,6 +370,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Small';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setHighQuality);
+
+            // Clearing array
+            setHighQuality.length = 0;
 
             // Getting simple output settings container with high quality settings
             let highQualityOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -381,6 +426,10 @@ describe('nodeobs_settings', () => {
             const updatedHighQualityOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(highQualityOutputSettings).to.eql(updatedHighQualityOutputSettings);
 
+            // Clearing arrays
+            highQualityOutputSettings.length = 0;
+            updatedHighQualityOutputSettings.length = 0;
+
             // Setting recording quality to indistinguishable
             let setIndistinguishableQuality = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -391,6 +440,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'HQ';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setIndistinguishableQuality);
+
+            // Clearing array
+            setIndistinguishableQuality.length = 0;
 
             // Getting simple output settings container with indistinguishable recording quality settings
             let indistinguishableQualityOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -444,6 +496,10 @@ describe('nodeobs_settings', () => {
             const updatedIndistinguishableOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(indistinguishableQualityOutputSettings).to.eql(updatedIndistinguishableOutputSettings);
 
+            // Clearing arrays
+            indistinguishableQualityOutputSettings.length = 0;
+            updatedIndistinguishableOutputSettings.length = 0;
+
              // Setting recording quality to lossless
             let setLosslessQuality = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -454,6 +510,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Lossless';
  
             osn.NodeObs.OBS_settings_saveSettings('Output', setLosslessQuality);
+
+            // Clearing array
+            setLosslessQuality.length = 0;
 
             // Getting simple output settings container with lossless recording quality settings
             let losslessQualityOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -502,6 +561,10 @@ describe('nodeobs_settings', () => {
             // Checking if output settings were updated correctly
             const updatedLosslessOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(losslessQualityOutputSettings).to.eql(updatedLosslessOutputSettings);
+
+            // Clearing arrays
+            losslessQualityOutputSettings.length = 0;
+            updatedLosslessOutputSettings.length = 0;
         });
 
         it('Get and set QSV encoder streaming and recording advanced output settings', () => {
@@ -515,6 +578,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Advanced';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setToAdvanced);
+
+            // Clearing array
+            setToAdvanced.length = 0;
 
             // Setting encoder to QSV
             let setQSV = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -533,6 +599,9 @@ describe('nodeobs_settings', () => {
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setQSV);
 
+            // Clearing array
+            setQSV.length = 0;
+
             // Setting rate control to CBR
             let setCBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -549,6 +618,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'CBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setCBR);
+
+            // Clearing array
+            setCBR.length = 0;
 
             // Getting advanced output settings container with CBR parameters
             let cbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -653,6 +725,10 @@ describe('nodeobs_settings', () => {
             const updatedCBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(cbrOutputSettings).to.eql(updatedCBROutputSettings);
 
+            // Clearing arrays
+            cbrOutputSettings.length = 0;
+            updatedCBROutputSettings.length = 0;
+
             // Setting rate control to VBR
             let setVBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -669,6 +745,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'VBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setVBR);
+
+            // Clearing array
+            setVBR.length = 0;
 
             // Getting advanced output settings container with VBR parameters
             let vbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -725,6 +804,10 @@ describe('nodeobs_settings', () => {
             const updatedVBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(vbrOutputSettings).to.eql(updatedVBROutputSettings);
 
+            // Clearing arrays
+            vbrOutputSettings.length = 0;
+            updatedVBROutputSettings.length = 0;
+
             // Setting rate control to VCM
             let setVCM = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -741,6 +824,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'VCM';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setVCM);
+
+            // Clearing array
+            setVCM.length = 0;
 
             // Getting advanced output settings container with VCM parameters
             let vcmOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -797,6 +883,10 @@ describe('nodeobs_settings', () => {
             const updatedVCMOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(vcmOutputSettings).to.eql(updatedVCMOutputSettings);
 
+            // Clearing arrays
+            vcmOutputSettings.length = 0;
+            updatedVCMOutputSettings.length = 0;
+
             // Setting rate control to CQP
             let setCQP = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -813,6 +903,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'CQP';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setCQP);
+
+            // Clearing array
+            setCQP.length = 0;
 
             // Getting advanced output settings container with CQP parameters
             let cqpOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -877,6 +970,10 @@ describe('nodeobs_settings', () => {
             const updatedCQPOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(cqpOutputSettings).to.eql(updatedCQPOutputSettings);
 
+            // Clearing arrays
+            cqpOutputSettings.length = 0;
+            updatedCQPOutputSettings.length = 0;
+
             // Setting rate control to AVBR
             let setAVBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -893,6 +990,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'AVBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setAVBR);
+
+            // Clearing array
+            setAVBR.length = 0;
 
             // Getting advanced output settings container with AVBR parameters
             let avbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -957,6 +1057,10 @@ describe('nodeobs_settings', () => {
             const updatedAVBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(avbrOutputSettings).to.eql(updatedAVBROutputSettings);
 
+            // Clearing arrays
+            avbrOutputSettings.length = 0;
+            updatedAVBROutputSettings.length = 0;
+
             // Setting rate control to ICQ
             let setICQ = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -973,6 +1077,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'ICQ';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setICQ);
+
+            // Clearing array
+            setICQ.length = 0;
 
             // Getting advanced output settings container with ICQ parameters
             let icqOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1021,6 +1128,10 @@ describe('nodeobs_settings', () => {
             const updatedICQOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(icqOutputSettings).to.eql(updatedICQOutputSettings);
 
+            // Clearing arrays
+            icqOutputSettings.length = 0;
+            updatedICQOutputSettings.length = 0;
+
             // Setting rate control to LA_ICQ
             let setLA_ICQ = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1037,6 +1148,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'LA_ICQ';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setLA_ICQ);
+
+            // Clearing array
+            setLA_ICQ.length = 0;
 
             // Getting advanced output settings container with LA_ICQ parameters
             let la_icqOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1093,6 +1207,10 @@ describe('nodeobs_settings', () => {
             const updatedLA_ICQOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(la_icqOutputSettings).to.eql(updatedLA_ICQOutputSettings);
 
+            // Clearing arrays
+            la_icqOutputSettings.length = 0;
+            updatedLA_ICQOutputSettings.length = 0;
+
             // Setting rate control to LA
             let setLA = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1122,6 +1240,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = true;
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setLA);
+
+            // Clearing array
+            setLA.length = 0;
 
             // Getting advanced output settings container with LA parameters
             let laOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1193,6 +1314,10 @@ describe('nodeobs_settings', () => {
             // Checking if LA advanced settings were updated correctly
             const updatedLAOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(laOutputSettings).to.eql(updatedLAOutputSettings);
+
+            // Clearing arrays
+            laOutputSettings.length = 0;
+            updatedLAOutputSettings.length = 0;
         });
 
         it('Get and set x264 encoder streaming and recording advanced output settings', () => {
@@ -1206,6 +1331,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Advanced';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setToAdvanced);
+
+            // Clear array
+            setToAdvanced.length = 0;
 
             // Setting encoder to x264
             let setx264 = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1224,6 +1352,9 @@ describe('nodeobs_settings', () => {
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setx264);
 
+            // Clear array
+            setx264.length = 0;
+
             // Setting rate control to CBR
             let setCBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1240,6 +1371,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'CBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setCBR);
+
+            // Clear array
+            setCBR.length = 0;
 
             // Getting advanced output settings container with CBR parameters
             let cbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1352,6 +1486,10 @@ describe('nodeobs_settings', () => {
             const updatedCBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(cbrOutputSettings).to.eql(updatedCBROutputSettings);
 
+            // Clearing arrays
+            cbrOutputSettings.length = 0;
+            updatedCBROutputSettings.length = 0;
+
             // Setting rate control to ABR
             let setABR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1380,6 +1518,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = true;
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setABR);
+
+            // Clearing array
+            setABR.length = 0;
 
             // Getting advanced output settings container with ABR parameters
             let abrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1436,6 +1577,10 @@ describe('nodeobs_settings', () => {
             const updatedABROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(abrOutputSettings).to.eql(updatedABROutputSettings);
 
+            // Clearing arrays
+            abrOutputSettings.length = 0;
+            updatedABROutputSettings.length = 0;
+
             // Setting rate control to VBR
             let setVBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1452,6 +1597,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'VBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setVBR);
+
+            // Clearing array
+            setVBR.length = 0;
 
             // Getting advanced output settings container with VBR parameters
             let vbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1508,6 +1656,10 @@ describe('nodeobs_settings', () => {
             const updatedVBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(vbrOutputSettings).to.eql(updatedVBROutputSettings);
 
+            // Clearing arrays
+            vbrOutputSettings.length = 0;
+            updatedVBROutputSettings.length = 0;
+
             // Setting rate control to CRF
             let setCRF = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1524,6 +1676,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'CRF';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setCRF);
+
+            // Clearing array
+            setCRF.length = 0;
 
             // Getting advanced output settings container with CRF parameters
             let crfOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1579,6 +1734,10 @@ describe('nodeobs_settings', () => {
             // Checking if settings were updated correctly
             const updatedCRFOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(crfOutputSettings).to.eql(updatedCRFOutputSettings);
+
+            // Clearing arrays
+            crfOutputSettings.length = 0;
+            updatedCRFOutputSettings.length = 0;
         });
 
         it('Get and set NVENC encoder streaming and recording advanced output settings', () => {
@@ -1592,6 +1751,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Advanced';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setToAdvanced);
+
+            // Clearing array
+            setToAdvanced.length = 0;
 
             // Setting encoder to NVENC
             let setNVENC = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1610,6 +1772,9 @@ describe('nodeobs_settings', () => {
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setNVENC);
 
+            // Clearing array
+            setNVENC.length = 0;
+
             // Setting rating control to CBR
             let setCBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1626,6 +1791,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'CBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setCBR);
+
+            // Clearing array
+            setCBR.length = 0;
 
             // Getting advanced output settings container with CBR parameters
             let cbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1754,6 +1922,10 @@ describe('nodeobs_settings', () => {
             const updatedCBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(cbrOutputSettings).to.eql(updatedCBROutputSettings);
 
+            // Clearing arrays
+            cbrOutputSettings.length = 0;
+            updatedCBROutputSettings.length = 0;
+
             // Setting rate control to VBR
             let setVBR = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1770,6 +1942,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'VBR';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setVBR);
+
+            // Clearing array
+            setVBR.length = 0;
 
             // Getting advanced output settings container with VBR parameters
             let vbrOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1810,6 +1985,10 @@ describe('nodeobs_settings', () => {
             const updatedVBROutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(vbrOutputSettings).to.eql(updatedVBROutputSettings);
 
+            // Clear arrays
+            vbrOutputSettings.length = 0;
+            updatedVBROutputSettings.length = 0;
+
             // Setting rate control to CQP
             let setCQP = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1826,6 +2005,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'CQP';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setCQP);
+
+            // Clear array
+            setCQP.length = 0;
 
             // Getting advanced output settings container with CQP parameters
             let cqpOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1874,6 +2056,10 @@ describe('nodeobs_settings', () => {
             const updatedCQPOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(cqpOutputSettings).to.eql(updatedCQPOutputSettings);
 
+            // Clear arrays
+            cqpOutputSettings.length = 0;
+            updatedCQPOutputSettings.length = 0;
+
             // Setting rate control to Lossless
             let setLossless = osn.NodeObs.OBS_settings_getSettings('Output');
 
@@ -1890,6 +2076,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'lossless';
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setLossless);
+
+            // Clear array
+            setLossless.length = 0;
 
             // Getting advanced output settings container with Lossless parameters
             let losslessOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
@@ -1929,6 +2118,10 @@ describe('nodeobs_settings', () => {
             // Checking if Lossless advanced settings were updated correctly
             const updatedLosslessOutputSettings = osn.NodeObs.OBS_settings_getSettings('Output');
             expect(losslessOutputSettings).to.eql(updatedLosslessOutputSettings);
+
+            // Clear arrays
+            losslessOutputSettings.length = 0;
+            updatedLosslessOutputSettings.length = 0;
         });
 
         it('Get and set audio tracks and replay buffer advanced output settings', () => {
@@ -1948,6 +2141,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = true;
 
             osn.NodeObs.OBS_settings_saveSettings('Output', setToAdvanced);
+
+            // Clear array
+            setToAdvanced.length = 0;
 
             // Getting advanced output settings
             let audioTrackReplayBufferSettings = osn.NodeObs.OBS_settings_getSettings('Video');
@@ -2025,6 +2221,10 @@ describe('nodeobs_settings', () => {
             // Checking if settings were updated correctly
             const updatedSettings = osn.NodeObs.OBS_settings_getSettings('Video');
             expect(audioTrackReplayBufferSettings).to.eql(updatedSettings);
+
+            // Clearing arrays
+            audioTrackReplayBufferSettings.length = 0;
+            updatedSettings.length = 0;
         });
 
         it('Get and set video settings', () => {
@@ -2044,6 +2244,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Common FPS Values';
 
             osn.NodeObs.OBS_settings_saveSettings('Video', set1080pAndCommonFPS);
+
+            // Clear array
+            set1080pAndCommonFPS.length = 0;
 
             // Getting video settings container with common fps settings
             let commonFPSVideoSettings = osn.NodeObs.OBS_settings_getSettings('Video');
@@ -2082,6 +2285,10 @@ describe('nodeobs_settings', () => {
             const updatedCommonFPSVideoSettings = osn.NodeObs.OBS_settings_getSettings('Video');
             expect(commonFPSVideoSettings).to.eql(updatedCommonFPSVideoSettings);
 
+            // Clear arrays
+            commonFPSVideoSettings.length = 0;
+            updatedCommonFPSVideoSettings.length = 0;
+
             // Setting base resolution to 1280x720 and FPS type to integer
             let set720pAndIntegerFPS = osn.NodeObs.OBS_settings_getSettings('Video');
 
@@ -2098,6 +2305,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Integer FPS Value';
 
             osn.NodeObs.OBS_settings_saveSettings('Video', set720pAndIntegerFPS);
+
+            // Clearing array
+            set720pAndIntegerFPS.length = 0;
 
             // Getting video settings container with integer FPS settings
             let integerFPSVideoSettings = osn.NodeObs.OBS_settings_getSettings('Video');
@@ -2128,6 +2338,10 @@ describe('nodeobs_settings', () => {
             const updatedIntegerFPSVideoSettings = osn.NodeObs.OBS_settings_getSettings('Video');
             expect(integerFPSVideoSettings).to.eql(updatedIntegerFPSVideoSettings);
 
+            // Clearing arrays
+            integerFPSVideoSettings.length = 0;
+            updatedIntegerFPSVideoSettings.length = 0;
+
             // Setting FPS type to fractional
             let setFractionalFPS = osn.NodeObs.OBS_settings_getSettings('Video');
 
@@ -2138,6 +2352,9 @@ describe('nodeobs_settings', () => {
             }).currentValue = 'Fractional FPS Value';
 
             osn.NodeObs.OBS_settings_saveSettings('Video', setFractionalFPS);
+
+            // Clearing array
+            setFractionalFPS.length = 0;
 
             // Getting video settings container with fractional FPS settings
             let fractionalFPSVideoSettings = osn.NodeObs.OBS_settings_getSettings('Video');
@@ -2167,6 +2384,10 @@ describe('nodeobs_settings', () => {
             // Checking if settings were updated correctly
             const updatedFractionalFPSVideoSettings = osn.NodeObs.OBS_settings_getSettings('Video');
             expect(fractionalFPSVideoSettings).to.eql(updatedFractionalFPSVideoSettings);
+
+            // Clearing arrays
+            fractionalFPSVideoSettings.length = 0;
+            updatedFractionalFPSVideoSettings.length = 0;
         });
 
         it('Get and set advanced settings', () => {
@@ -2259,6 +2480,10 @@ describe('nodeobs_settings', () => {
             // Checking if advanced settings were updated correctly
             const updatedAdvancedSettings = osn.NodeObs.OBS_settings_getSettings('Advanced');
             expect(advancedSettings).to.eql(updatedAdvancedSettings);
+
+            // Clearing arrays
+            advancedSettings.length = 0;
+            updatedAdvancedSettings.length = 0;
         });
     });
 
@@ -2270,6 +2495,9 @@ describe('nodeobs_settings', () => {
             // Checking if categories list contains the basic settings categories
             expect(categories.length).to.not.equal(0);
             expect(categories).to.include.members(basicOBSSettingsCategories);
+
+            // Clearing array
+            categories.length = 0;
         });
     });
 });
