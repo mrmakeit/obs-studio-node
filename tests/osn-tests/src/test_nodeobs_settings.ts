@@ -56,7 +56,7 @@ describe('nodeobs_settings', () => {
             // Clearing arrays
             generalSettings.length = 0;
             updatedGeneralSettings.length = 0;
-            console.log('General settings test case has finished!!!')
+            console.log('General settings test case has finished!!')
         });
 
         it('Get and set Twitch stream settings', function() {
