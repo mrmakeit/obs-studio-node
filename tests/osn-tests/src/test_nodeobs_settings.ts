@@ -56,9 +56,13 @@ describe('nodeobs_settings', () => {
             // Clearing arrays
             generalSettings.length = 0;
             updatedGeneralSettings.length = 0;
+            console.log('General settings test case has finished!!!')
         });
 
         it('Get and set Twitch stream settings', () => {
+            console.log('Starging Twitch stream settings...');
+            console.log();
+            console.log('Getting stream settings..');
             let originalStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
 
             // Setting stream service to Twitch
@@ -70,6 +74,7 @@ describe('nodeobs_settings', () => {
                 });
             });
 
+            console.log('Setting stream settings...')
             osn.NodeObs.OBS_settings_saveSettings('Stream', originalStreamSettings);
 
             // Clearing array
