@@ -24,8 +24,8 @@ describe('nodeobs_settings', () => {
         deleteConfigFiles();
     });
 
-    context('# OBS_settings_saveSettings and OBS_settings_getSettings', () => {
-        it('Get and set general settings', () => {
+    context('# OBS_settings_saveSettings and OBS_settings_getSettings', function() {
+        it('Get and set general settings', function() {
             // Getting general settings
             let generalSettings = osn.NodeObs.OBS_settings_getSettings('General');
 
@@ -59,8 +59,8 @@ describe('nodeobs_settings', () => {
             console.log('General settings test case has finished!!!')
         });
 
-        it('Get and set Twitch stream settings', () => {
-            console.log('Starging Twitch stream settings...');
+        it('Get and set Twitch stream settings', function() {
+            console.log('Starting Twitch stream settings...');
             console.log();
             console.log('Getting stream settings..');
             let originalStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
@@ -74,7 +74,7 @@ describe('nodeobs_settings', () => {
                 });
             });
 
-            console.log('Setting stream settings...')
+            console.log('Setting stream settings...');
             osn.NodeObs.OBS_settings_saveSettings('Stream', originalStreamSettings);
 
             // Clearing array
@@ -117,7 +117,7 @@ describe('nodeobs_settings', () => {
             updatedStreamSettings.length = 0;
         });
 
-        it('Get and set Youtube stream settings', () => {
+        /*it('Get and set Youtube stream settings', () => {
             let originalStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
 
             // Setting stream service to Twitch
