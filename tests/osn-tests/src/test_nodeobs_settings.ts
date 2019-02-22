@@ -2,7 +2,7 @@ import 'mocha'
 import { expect } from 'chai'
 import * as osn from 'obs-studio-node';
 import { OBSProcessHandler } from '../util/obs_process_handler';
-import { deleteConfigFiles, basicOBSSettingsCategories } from '../util/general';
+import { getCppErrorMsg, deleteConfigFiles, basicOBSSettingsCategories } from '../util/general';
 
 describe('nodeobs_settings', () => {
     let obs: OBSProcessHandler;
@@ -62,8 +62,15 @@ describe('nodeobs_settings', () => {
         it('Get and set Twitch stream settings', function() {
             console.log('Starting Twitch stream settings...');
             console.log();
+            
+            let originalStreamSettings: any;
+
             console.log('Getting stream settings..');
-            let originalStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
+            try {
+                originalStreamSettings = osn.NodeObs.OBS_settings_getSettings('Stream');
+            } catch (e) {
+                throw new Error(getCppErrorMsg(e));
+            }
 
             // Setting stream service to Twitch
             originalStreamSettings.forEach(subCategory => {
